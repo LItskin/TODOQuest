@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="445.0dp"
+        android:id="@+id/questList" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:id="@+id/linearLayout2">
+        <Button
+            android:text="Calendar"
+            android:layout_width="122.66dp"
+            android:layout_height="match_parent"
+            android:id="@+id/calendarButton"
+            android:layout_marginRight="0.0dp"
+            android:textSize="18dp" />
+        <Button
+            android:text="+"
+            android:layout_width="122.66dp"
+            android:layout_height="match_parent"
+            android:id="@+id/addButton"
+            android:textSize="60dp" />
+        <Button
+            android:text="Profile"
+            android:layout_width="122.66dp"
+            android:layout_height="match_parent"
+            android:id="@+id/profileButton"
+            android:textSize="18dp" />
+    </LinearLayout>
+</LinearLayout>

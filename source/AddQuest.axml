@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/questName"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Quest Name:" />
+    <EditText
+        android:id="@+id/questNameEnter"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Enter Quest Name" />
+    <TextView
+        android:id="@+id/dueDate"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Due Date:" />
+    <EditText
+        android:id="@+id/dueDateEntry"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Enter Due Date" />
+    <TextView
+        android:id="@+id/difficulty"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Difficulty:" />
+    <Spinner
+        android:id="@+id/difficultyEntry"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:prompt="@string/difficulty_prompt" />
+    <Button
+        android:text="Submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/submitButton" />
+</LinearLayout>
