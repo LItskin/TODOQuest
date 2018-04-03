@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 using Android.App;
 using Android.Content;
@@ -9,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using SQLite;
 
 namespace TODOQuestApp
 {
@@ -80,10 +82,50 @@ namespace TODOQuestApp
             DIFFICULTY = (string)spinner.GetItemAtPosition(e.Position);
         }
 
-        //Method for sotring user input
+        //Method for storing user input
         private void SubmitButtonClick()
         {
+            //bool variable for table check
+            bool isIn = false;
+            Quests quest = new Quests(QUEST_NAME, DUE_DATE, DIFFICULTY);
 
+            //Get db path file path
+            string path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "QuestsDb.db3");
+            SQLiteConnection db = new SQLiteConnection(path);
+
+            //Check if object exists in table          
+            var table = db.Table<Quests>();
+            foreach(var i in table) //Check records in table
+            {
+                if(i.questName == quest.questName)
+                {
+                    isIn = true;
+                    break;
+                }
+                else
+                {
+                    isIn = false;
+                }
+            }
+            if(isIn == true) //Check bool variable
+            {
+                //Alert if the quest already exists
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetTitle("Error");
+                alert.SetMessage("This quest already exists. Please enter a new quest.");
+                alert.SetNeutralButton("Ok", delegate
+                {
+                    alert.Dispose();
+                });
+            }
+            else
+            {
+                db.Insert(quest);
+            }
+
+            db.Close();
+            //Go back to main screen
+            StartActivity(typeof(MainActivity));
         }
     }
 }
