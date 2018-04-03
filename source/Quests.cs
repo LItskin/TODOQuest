@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +24,10 @@ namespace TODOQuestApp
             this.questName = name;
             this.dueDate = due;
             this.difficulty = diff;
+        }
+        public Quests()
+        {
+
         }
     }
 }
