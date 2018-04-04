@@ -65,13 +65,15 @@ namespace TODOQuestApp
         {
             var dateTimeNow = DateTime.Now;
             DatePickerDialog datePick = new DatePickerDialog(this, this, dateTimeNow.Year, dateTimeNow.Month, dateTimeNow.Day);
+            long currentDate = dateTimeNow.Ticks;
+            datePick.DatePicker.MinDate = currentDate;
             datePick.Show();
         }
 
         //Method for storing date from date dialog
-        public void OnDateSet(DatePicker view, int year, int month, int day)
+        public void OnDateSet(DatePicker view, int year, int month, int dayOfMonth)
         {
-            DUE_DATE = new DateTime(year, month, day).ToShortDateString();
+            DUE_DATE = new DateTime(year, month, dayOfMonth).ToShortDateString();
             FindViewById<EditText>(Resource.Id.dueDateEntry).Text = DUE_DATE;
         }
 
@@ -87,14 +89,14 @@ namespace TODOQuestApp
         {
             //bool variable for table check
             bool isIn = false;
-            Quests quest = new Quests(QUEST_NAME, DUE_DATE, DIFFICULTY);
+            Quest quest = new Quest(QUEST_NAME, DUE_DATE, DIFFICULTY);
 
             //Get db path file path
             string path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "QuestsDb.db3");
             SQLiteConnection db = new SQLiteConnection(path);
 
             //Check if object exists in table          
-            var table = db.Table<Quests>();
+            var table = db.Table<Quest>();
             foreach(var i in table) //Check records in table
             {
                 if(i.questName == quest.questName)
@@ -121,11 +123,11 @@ namespace TODOQuestApp
             else
             {
                 db.Insert(quest);
-            }
-
-            db.Close();
-            //Go back to main screen
-            StartActivity(typeof(MainActivity));
-        }
+                db.Close();
+                //Go back to main screen
+                StartActivity(typeof(MainActivity));
+                Finish();
+            }            
+        }        
     }
 }
