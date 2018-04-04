@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/linearLayout1">
+    <FrameLayout
+        p1:layout_width="match_parent"
+        p1:layout_height="150.0dp"
+        p1:id="@+id/frameLayout1">
+        <ImageView
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:layout_width="150.0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/imageView1" />
+        <TextView
+            p1:text="Level 2 Exp: 1337/4510"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="300.0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView1"
+            p1:layout_marginStart="150.0dp"
+            p1:layout_marginTop="50.0dp" />
+    </FrameLayout>
+    <FrameLayout
+        p1:layout_width="match_parent"
+        p1:layout_height="75.0dp"
+        p1:id="@+id/frameLayout2">
+        <ImageButton
+            p1:src="C:\Users\Admin\source\repos\ToDoQuestAvitar\ToDoQuest\Resources\drawable\black_hat.png"
+            p1:layout_width="75.0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/imageButton1"
+            p1:scaleX="0.5"
+            p1:scaleY="0.5" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:layout_width="75.0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/imageButton2"
+            p1:layout_marginStart="100.0dp" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:layout_width="75.0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/imageButton3"
+            p1:layout_marginStart="200.0dp" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:layout_width="75.0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/imageButton4"
+            p1:layout_marginStart="300.0dp" />
+    </FrameLayout>
+    <GridLayout
+        p1:layout_width="match_parent"
+        p1:layout_height="fill_parent"
+        p1:id="@+id/gridLayout1"
+        p1:columnCount="4"
+        p1:paddingLeft="15.0dp"
+        p1:paddingTop="20.0dp"
+        p1:layout_marginBottom="52.0dp">
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton5" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton6" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton7" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton8" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton9" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton10" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton11" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton12" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton13" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton14" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton15" />
+        <ImageButton
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/imageButton16" />
+    </GridLayout>
+</LinearLayout>
