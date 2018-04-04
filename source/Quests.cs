@@ -9,25 +9,33 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using SQLite;
 
 namespace TODOQuestApp
 {
     [Serializable]
-    class Quests
+    class Quest
     {
+        [PrimaryKey, AutoIncrement]
+        private int questId { get; set; }
         public string questName;
         public string dueDate;
         public string difficulty;
 
-        public Quests(string name, string due, string diff)
+        public Quest(string name, string due, string diff)
         {
             this.questName = name;
             this.dueDate = due;
             this.difficulty = diff;
         }
-        public Quests()
+        public Quest()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return questName + " " + dueDate + " " + difficulty;
         }
     }
 }
