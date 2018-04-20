@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,13 +14,13 @@ namespace TODOQuestApp
 {
     class QuestListAdapter : BaseAdapter<Quest>
     {
-        Quest[] quests;
+        Quest[] myQuests;
         Activity context;
 
         //Constructor
         public QuestListAdapter(Activity context, Quest[] quests) : base()
         {
-            this.quests = quests;
+            this.myQuests = quests;
             this.context = context;
         }
 
@@ -35,7 +35,7 @@ namespace TODOQuestApp
         {
             get
             {
-                return quests[position];
+                return myQuests[position];
             }
         }
 
@@ -44,7 +44,7 @@ namespace TODOQuestApp
         {
             get
             {
-                return quests.Length;
+                return myQuests.Length;
             }
         }
 
@@ -55,10 +55,10 @@ namespace TODOQuestApp
             View view = convertView;
             if(view == null)
             {
-                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);                
+                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
             }
 
-            view.FindViewById<TextView>(Resource.Id.quests).Text = quests[position].ToString();
+            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = myQuests[position].ToString();
             return view;
         }
     }
