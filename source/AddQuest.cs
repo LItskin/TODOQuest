@@ -17,6 +17,7 @@ namespace TODOQuestApp
     [Activity(Label = "AddQuest")]
     public class AddQuest : Activity, DatePickerDialog.IOnDateSetListener
     {
+        private const int DATE_DIALOG = 1;
         string QUEST_NAME;
         string DUE_DATE;
         string DIFFICULTY;
@@ -30,7 +31,7 @@ namespace TODOQuestApp
 
             //User Entry Variables
             var questNameEntry = FindViewById<EditText>(Resource.Id.questNameEnter);
-            var dueDateEntry = FindViewById<EditText>(Resource.Id.dueDateEntry);
+            var dueDateEntry = FindViewById<Button>(Resource.Id.dueDateEntry);
             Spinner difficultySelect = FindViewById<Spinner>(Resource.Id.difficultyEntry);
             Button submit = FindViewById<Button>(Resource.Id.submitButton);
 
@@ -43,8 +44,8 @@ namespace TODOQuestApp
             //Quest Name entry handler
             questNameEntry.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
             {
-                QUEST_NAME = e.ToString();
-                questNameEntry.Text = QUEST_NAME;
+                QUEST_NAME = questNameEntry.Text;
+                FindViewById<TextView>(Resource.Id.questName).Text = "Quest Name: " + QUEST_NAME;
             };
 
             //Date entry handler
@@ -55,7 +56,7 @@ namespace TODOQuestApp
 
             //Submit button handler
             submit.Click += delegate
-            {
+            {                
                 SubmitButtonClick();
             };
         }
@@ -63,10 +64,8 @@ namespace TODOQuestApp
         //Method for opening date dialog
         public void OnClickDueDateEntry()
         {
-            var dateTimeNow = DateTime.Now;
+            var dateTimeNow = DateTime.Today;
             DatePickerDialog datePick = new DatePickerDialog(this, this, dateTimeNow.Year, dateTimeNow.Month, dateTimeNow.Day);
-            long currentDate = dateTimeNow.Ticks;
-            datePick.DatePicker.MinDate = currentDate;
             datePick.Show();
         }
 
@@ -74,7 +73,8 @@ namespace TODOQuestApp
         public void OnDateSet(DatePicker view, int year, int month, int dayOfMonth)
         {
             DUE_DATE = new DateTime(year, month, dayOfMonth).ToShortDateString();
-            FindViewById<EditText>(Resource.Id.dueDateEntry).Text = DUE_DATE;
+            var dueDate = FindViewById<TextView>(Resource.Id.dueDate);
+            dueDate.Text = "Due Date: " + DUE_DATE;
         }
 
         //Method for storing difficulty
@@ -82,6 +82,7 @@ namespace TODOQuestApp
         {
             Spinner spinner = (Spinner)sender;
             DIFFICULTY = (string)spinner.GetItemAtPosition(e.Position);
+            FindViewById<TextView>(Resource.Id.difficulty).Text = "Difficulty: " + DIFFICULTY;
         }
 
         //Method for storing user input
