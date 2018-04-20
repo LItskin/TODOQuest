@@ -16,8 +16,7 @@ namespace TODOQuestApp
 {
     [Activity(Label = "MainActivity", MainLauncher = true)]
     public class MainActivity : Activity
-    {
-        Button addQuest;
+    {        
         //DB path
         static string path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "QuestsDb.db3");
         //DB variable
@@ -29,25 +28,34 @@ namespace TODOQuestApp
             base.OnCreate(savedInstanceState);
             
             //Call method to create tables if it doesn't exist
-            DBCheckAndCreate();
+            //DBCheckAndCreate();
 
             //Open Main Menu
             SetContentView(Resource.Layout.Main);
 
             //Call method to load the quest list
             LoadQuestList();
+            
+            Button addQuest = FindViewById<Button>(Resource.Id.addButton);
+            Button avatar = FindViewById<Button>(Resource.Id.profileButton);
 
-            addQuest = FindViewById<Button>(Resource.Id.addButton);
+            //Button handlers
             addQuest.Click += delegate
             {
                 StartActivity(typeof(AddQuest));
+                Finish();
+            };
+
+            avatar.Click += delegate
+            {
+                StartActivity(typeof(Avatar));
             };
         }
 
         //Method to create db if it doesn't exist
         private void DBCheckAndCreate()
         {
-            var info = db.GetTableInfo("Quests");
+            var info = db.GetTableInfo("Quest");
             if (!info.Any())
             {
                 db.CreateTable<Quest>();
@@ -63,24 +71,39 @@ namespace TODOQuestApp
         {
             //Array to hold quests
             questList = new Quest[30];
-
+            bool questExist = false;
+            
             //Populate array from db
             var table = db.Table<Quest>();
             int count = 0;
             foreach (var i in table)
             {
-                questList[count] = i;
-                count++;
+                if (i == null)
+                {
+                    questExist = false;
+                }
+                else
+                {
+                    questExist = true;
+                    questList[count] = i;
+                    count++;
+                }
             }
-
+            
             //Create list view for quests
-            ListView questsView = FindViewById<ListView>(Resource.Id.quests);
-            questsView.Adapter = new QuestListAdapter(this, questList);
-
-            //Register list view for context menu
-            RegisterForContextMenu(questsView);
+            if (questExist == false)
+            {
+                return;
+            }
+            else
+            {
+                ListView questsView = FindViewById<ListView>(Resource.Id.quests);
+                questsView.Adapter = new QuestListAdapter(this, questList);
+                //Register list view for context menu
+                RegisterForContextMenu(questsView);
+            }
         }
-
+        
         //Method for creating context menu
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
         {
